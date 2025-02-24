@@ -43,8 +43,6 @@ public class Library {
             }
         } 
 
-        bookFound = false; 
-
         if (!bookFound) {
             System.out.println("Sorry, this book is not in our catalog.");
         }
@@ -79,7 +77,6 @@ public class Library {
         // Try to borrow The Lords of the Rings from both libraries
         System.out.println("Borrowing The Lord of the Rings:");
         firstLibrary.borrowBook("The Lord of the Rings");
-        System.out.println("test line");
         firstLibrary.borrowBook("The Lord of the Rings");
         secondLibrary.borrowBook("The Lord of the Rings");
         System.out.println();
