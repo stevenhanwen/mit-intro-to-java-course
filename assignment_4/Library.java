@@ -5,27 +5,49 @@ import java.util.ArrayList;
 public class Library {
     // Add the missing implementation to this class
     private String libraryAddress;
-    private String libraryHours;
-    ArrayList<String> names = new ArrayList<>(); 
+
+    ArrayList<Book> books = new ArrayList<>(); 
 
     public Library (String libraryAddress) {
         this.libraryAddress = libraryAddress;
-
     }
 
-    public void addBook() {
-
+    public void addBook(Book book) {
+        books.add(book); 
     }
 
     public static void printOpeningHours () {
-
+        System.out.println("Libraries are open daily from 9am to 5pm.");
     }
 
-    public static void printAddress () {
-
+    public void printAddress () {
+        System.out.println(libraryAddress);
     }
 
     public void borrowBook (String title) {
+        boolean bookFound = false;
+
+        for (int i = 0; i < books.size(); i++) {
+            if (title.equals(books.get(i).getTitle())) {
+                bookFound = true; 
+
+                if (books.get(i).isBorrowed() == false) {
+                    books.get(i).borrowed(); 
+                    System.out.println("You successfully borrowed" + books.get(i).getTitle());
+
+                } else if (books.get(i).isBorrowed() == true) {
+                    System.out.println("Sorry, this book is already borrowed.");
+                }
+
+                break; 
+            }
+        } 
+
+        bookFound = false; 
+
+        if (!bookFound) {
+            System.out.println("Sorry, this book is not in our catalog.");
+        }
 
     }
 
@@ -57,25 +79,26 @@ public class Library {
         // Try to borrow The Lords of the Rings from both libraries
         System.out.println("Borrowing The Lord of the Rings:");
         firstLibrary.borrowBook("The Lord of the Rings");
+        System.out.println("test line");
         firstLibrary.borrowBook("The Lord of the Rings");
         secondLibrary.borrowBook("The Lord of the Rings");
         System.out.println();
 
         // Print the titles of all available books from both libraries
-        System.out.println("Books available in the first library:");
-        firstLibrary.printAvailableBooks();
-        System.out.println();
-        System.out.println("Books available in the second library:");
-        secondLibrary.printAvailableBooks();
-        System.out.println();
+        // System.out.println("Books available in the first library:");
+        // firstLibrary.printAvailableBooks();
+        // System.out.println();
+        // System.out.println("Books available in the second library:");
+        // secondLibrary.printAvailableBooks();
+        // System.out.println();
 
         // Return The Lords of the Rings to the first library
-        System.out.println("Returning The Lord of the Rings:");
-        firstLibrary.returnBook("The Lord of the Rings");
+        // System.out.println("Returning The Lord of the Rings:");
+        // firstLibrary.returnBook("The Lord of the Rings");
         System.out.println();
 
         // Print the titles of available from the first library
-        System.out.println("Books available in the first library:");
-        firstLibrary.printAvailableBooks();
+        // System.out.println("Books available in the first library:");
+        // firstLibrary.printAvailableBooks();
     }
 }
