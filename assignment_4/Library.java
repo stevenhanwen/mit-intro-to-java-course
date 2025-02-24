@@ -3,15 +3,16 @@ package assignment_4;
 import java.util.ArrayList;
 
 public class Library {
-    // Add the missing implementation to this class
     private String libraryAddress;
 
     ArrayList<Book> books = new ArrayList<>(); 
 
+    // constructor
     public Library (String libraryAddress) {
         this.libraryAddress = libraryAddress;
     }
 
+    // adds a book to the library 
     public void addBook(Book book) {
         books.add(book); 
     }
@@ -24,11 +25,17 @@ public class Library {
         System.out.println(libraryAddress);
     }
 
+    // this method looks to see if the book is in the library 
+    // if it is not borrowed yet, it will borrow it
+    // if the book is not found, prints that the book is not in the catalog
     public void borrowBook (String title) {
+        // initially set bookFound to false
         boolean bookFound = false;
 
+        // find if any books have the same title in the array list
         for (int i = 0; i < books.size(); i++) {
             if (title.equals(books.get(i).getTitle())) {
+                // if the book is found, set bookFound to true
                 bookFound = true; 
 
                 if (books.get(i).isBorrowed() == false) {
@@ -43,6 +50,7 @@ public class Library {
             }
         } 
 
+        // if the book is not found, print the book is not in the catalog
         if (!bookFound) {
             System.out.println("Sorry, this book is not in our catalog.");
         }
