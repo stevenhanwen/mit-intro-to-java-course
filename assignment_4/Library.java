@@ -71,6 +71,20 @@ public class Library {
 
     }
 
+    public void returnBook (String title) {
+
+        boolean bookFound = false;
+        
+        for (int i = 0; i < books.size(); i++) {
+            if (title.equals(books.get(i).getTitle())) {
+                books.get(i).returned(); 
+
+                break;
+            } 
+        }
+    }
+
+
     public static void main(String[] args) {
 
         // Create two libraries
