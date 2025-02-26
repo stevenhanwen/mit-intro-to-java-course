@@ -38,6 +38,7 @@ public class Library {
                 // if the book is found, set bookFound to true
                 bookFound = true; 
 
+                // if the book has not been borrowed yet, it will borrow it
                 if (books.get(i).isBorrowed() == false) {
                     books.get(i).borrowed(); 
                     System.out.println("You successfully borrowed" + books.get(i).getTitle());
@@ -57,7 +58,16 @@ public class Library {
 
     }
 
-    public static void printAvailableBooks() {
+    public void printAvailableBooks() {
+
+        if (books.size() == 0){
+            System.out.println("No book in catalog");
+        }
+
+        for (int i = 0; i < books.size(); i++) {
+            String nameOfCurrentBook = books.get(i).getTitle(); 
+            System.out.println(nameOfCurrentBook);
+        }
 
     }
 
@@ -90,12 +100,12 @@ public class Library {
         System.out.println();
 
         // Print the titles of all available books from both libraries
-        // System.out.println("Books available in the first library:");
-        // firstLibrary.printAvailableBooks();
-        // System.out.println();
-        // System.out.println("Books available in the second library:");
-        // secondLibrary.printAvailableBooks();
-        // System.out.println();
+        System.out.println("Books available in the first library:");
+        firstLibrary.printAvailableBooks();
+        System.out.println();
+        System.out.println("Books available in the second library:");
+        secondLibrary.printAvailableBooks();
+        System.out.println();
 
         // Return The Lords of the Rings to the first library
         // System.out.println("Returning The Lord of the Rings:");
