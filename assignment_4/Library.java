@@ -5,85 +5,118 @@ import java.util.ArrayList;
 public class Library {
     private String libraryAddress;
 
-    ArrayList<Book> books = new ArrayList<>(); 
+    ArrayList<Book> books = new ArrayList<>();
 
     // constructor
-    public Library (String libraryAddress) {
+    public Library(String libraryAddress) {
         this.libraryAddress = libraryAddress;
     }
 
-    // adds a book to the library 
+    // adds a book to the library
     public void addBook(Book book) {
-        books.add(book); 
+        books.add(book);
     }
 
-    public static void printOpeningHours () {
+    public static void printOpeningHours() {
         System.out.println("Libraries are open daily from 9am to 5pm.");
     }
 
-    public void printAddress () {
+    public void printAddress() {
         System.out.println(libraryAddress);
     }
 
-    // this method looks to see if the book is in the library 
+    // this method looks to see if the book is in the library
     // if it is not borrowed yet, it will borrow it
     // if the book is not found, prints that the book is not in the catalog
-    public void borrowBook (String title) {
+    public void borrowBook(String title) {
         // initially set bookFound to false
+        // when a book title is found, set to true. Note: the book may not be
+        // borrowable.
         boolean bookFound = false;
+        boolean bookCanBorrow = false;
 
         // find if any books have the same title in the array list
         for (int i = 0; i < books.size(); i++) {
-            if (title.equals(books.get(i).getTitle())) {
-                // if the book is found, set bookFound to true
-                bookFound = true; 
 
-                // if the book has not been borrowed yet, it will borrow it
-                if (books.get(i).isBorrowed() == false) {
-                    books.get(i).borrowed(); 
-                    System.out.println("You successfully borrowed" + books.get(i).getTitle());
+            // bookAtIndex is the book at i index of array list
+            Book bookAtIndexI = books.get(i);
 
-                } else if (books.get(i).isBorrowed() == true) {
-                    System.out.println("Sorry, this book is already borrowed.");
-                }
-
-                break; 
+            if (!title.equals(bookAtIndexI.getTitle())) {
+                // skip to the next book in the library
+                continue;
             }
-        } 
+
+            // found the book with the title
+            bookFound = true;
+
+            // check if the book is borrowed or not
+            if (bookAtIndexI.isBorrowed()) {
+                // continue because this book is already borrowed.
+                continue;
+            }
+
+            // the book is found and can be borrowed.
+            bookCanBorrow = true;
+
+            // if the book has not been borrowed yet, it will borrow it
+            bookAtIndexI.borrowed();
+
+            break;
+        }
+
+        if (!bookCanBorrow && bookFound) {
+            System.out.println("Sorry, this book is already borrowed.");
+            return;
+        }
 
         // if the book is not found, print the book is not in the catalog
         if (!bookFound) {
             System.out.println("Sorry, this book is not in our catalog.");
+            return;
         }
+
+        System.out.println("You successfully borrowed: " + title);
 
     }
 
     public void printAvailableBooks() {
 
-        if (books.size() == 0){
+        if (books.size() == 0) {
             System.out.println("No book in catalog");
         }
 
         for (int i = 0; i < books.size(); i++) {
-            String nameOfCurrentBook = books.get(i).getTitle(); 
+            Book bookAtIndexI = books.get(i);
+
+            if (bookAtIndexI.isBorrowed()) {
+                continue;
+            }
+
+            String nameOfCurrentBook = books.get(i).getTitle();
             System.out.println(nameOfCurrentBook);
         }
 
     }
 
-    public void returnBook (String title) {
+    public void returnBook(String title) {
 
         boolean bookFound = false;
-        
-        for (int i = 0; i < books.size(); i++) {
-            if (title.equals(books.get(i).getTitle())) {
-                books.get(i).returned(); 
 
+        for (int i = 0; i < books.size(); i++) {
+            Book bookAtIndexI = books.get(i);
+
+            if (title.equals(bookAtIndexI.getTitle()) && bookAtIndexI.isBorrowed()) {
+                bookFound = true;
+                bookAtIndexI.returned();
+                System.out.println("You successfully returned The Lord of the Rings");
                 break;
-            } 
+            }
+        }
+
+        if (!bookFound) {
+            System.out.println("You can't return this book. It is not in our system.");
         }
     }
-
 
     public static void main(String[] args) {
 
@@ -92,6 +125,7 @@ public class Library {
         Library secondLibrary = new Library("228 Liberty St.");
 
         // Add four books to the first library
+        firstLibrary.addBook(new Book("The Lord of the Rings"));
         firstLibrary.addBook(new Book("The Da Vinci Code"));
         firstLibrary.addBook(new Book("Le Petit Prince"));
         firstLibrary.addBook(new Book("A Tale of Two Cities"));
@@ -110,6 +144,8 @@ public class Library {
         System.out.println("Borrowing The Lord of the Rings:");
         firstLibrary.borrowBook("The Lord of the Rings");
         firstLibrary.borrowBook("The Lord of the Rings");
+        firstLibrary.borrowBook("The Lord of the Rings");
+
         secondLibrary.borrowBook("The Lord of the Rings");
         System.out.println();
 
@@ -122,12 +158,13 @@ public class Library {
         System.out.println();
 
         // Return The Lords of the Rings to the first library
-        // System.out.println("Returning The Lord of the Rings:");
+        System.out.println("Returning The Lord of the Rings:");
+        firstLibrary.returnBook("The Lord of the Rings");
         // firstLibrary.returnBook("The Lord of the Rings");
         System.out.println();
 
         // Print the titles of available from the first library
-        // System.out.println("Books available in the first library:");
-        // firstLibrary.printAvailableBooks();
+        System.out.println("Books available in the first library:");
+        firstLibrary.printAvailableBooks();
     }
 }
