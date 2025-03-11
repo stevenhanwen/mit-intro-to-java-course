@@ -4,20 +4,24 @@ public class Book {
     String title;
     boolean isAvailable;
     int bookCount = 0;
+
+    // This is the maximum number of a particular book in the library.
+    // This will prevent someone from returning too many of the same book.
     int maxBookCount = 0;
 
     // Creates a new Book
     public Book(String bookTitle) {
         // Implement this method
         title = bookTitle;
+        bookCount = 1;
     }
 
     public int getMaxBookCount() {
         return maxBookCount;
     }
 
-    public int addMaxBookCount() {
-        return bookCount;
+    public void addMaxBookCount() {
+        maxBookCount++;
     }
 
     public int getBookCount() {

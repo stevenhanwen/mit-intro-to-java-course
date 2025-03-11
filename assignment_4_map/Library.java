@@ -18,18 +18,15 @@ public class Library {
 
         // check if the same book is already in the hashmap
         if (books.containsKey(bookTitle)) {
-
-            // if the book count is greater than 0, just increase the bookCount.
-            if (books.get(bookTitle).getBookCount() > 0) {
-                books.get(bookTitle).addBookCount();
-                books.get(bookTitle).addMaxBookCount();
-                return;
-            }
+            // book exists, just increase count.
+            books.get(bookTitle).addBookCount();
+            books.get(bookTitle).addMaxBookCount();
+            return;
         }
 
+        // book does not exist, create a new book and increase count.
         Book book = new Book(bookTitle);
         books.put(bookTitle, book);
-        books.get(bookTitle).addBookCount();
         books.get(bookTitle).addMaxBookCount();
 
     }
@@ -46,37 +43,22 @@ public class Library {
     // if it is not borrowed yet, it will borrow it
     // if the book is not found, prints that the book is not in the catalog
     public void borrowBook(String title) {
-        // initially set bookFound to false
-        // when a book title is found, set to true. Note: the book may not be
-        // borrowable.
-        boolean bookFound = false;
-        boolean bookCanBorrow = false;
 
-        // check if the hashmap has the key (book title)
-        if (books.containsKey(title)) {
-            // found the book with the title
-            bookFound = true;
-
-            // check if the book is available to borrow
-            if (books.get(title).isAvailable()) {
-                // the book is found and can be borrowed.
-                bookCanBorrow = true;
-                System.out.println("You successfully borrowed: " + title);
-                books.get(title).substractBookCount();
-            }
-        }
-
-        if (!bookCanBorrow && bookFound) {
-            System.out.println("Sorry, this book is already borrowed.");
+        if (!books.containsKey(title)) {
+            System.out.println("Can't borrown, book not found");
             return;
         }
 
-        // if the book is not found, print the book is not in the catalog
-        if (!bookFound) {
-            System.out.println("Sorry, this book is not in our catalog.");
+        // grab the book object
+        Book book = books.get(title);
+
+        if (!book.isAvailable()) {
+            System.out.println("Can't borrow, book not available");
             return;
         }
 
+        book.substractBookCount();
+        System.out.println("Borrowed successfully");
     }
 
     public void printAvailableBooks() {
@@ -90,21 +72,26 @@ public class Library {
 
     public void returnBook(String title) {
 
-        boolean bookFound = false;
-
-        if (books.containsKey(title)) {
-            // found the book with the title
-            bookFound = true;
-            if (books.get(title).getBookCount() <= books.get(title).getMaxBookCount()) {
-                books.get(title).addBookCount();
-            } else {
-                System.out.println("You can't return this book, it is an extra one that is not in our system.");
-            }
+        // check if book in the catalog exists
+        if (!books.containsKey(title)) {
+            System.out.println("Can't return, book not in catalog");
+            return;
+        }
+        // grab the book object
+        Book book = books.get(title);
+        System.out.println("current count of " + title + " is: " + book.getBookCount());
+        System.out.println("current max count of " + title + " is: " + book.getMaxBookCount());
+        // check if current count equals max count
+        // if so, can't return the book because the book has not been borrowed.
+        // for example: add book "abc", then return "abc" without ever borrowing it.
+        if (book.getBookCount() == book.getMaxBookCount()) {
+            System.out.println("Can't return, there is already max # of this book");
+            return;
         }
 
-        if (!bookFound) {
-            System.out.println("You can't return this book. It is not in our system.");
-        }
+        // increase book count after returning.
+        book.addBookCount();
+        System.out.println("Successfully returned book!");
     }
 
     public static void main(String[] args) {
