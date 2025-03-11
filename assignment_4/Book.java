@@ -8,32 +8,32 @@ public class Book {
     // Creates a new Book
     public Book(String bookTitle) {
         // Implement this method
-        title = bookTitle; 
+        title = bookTitle;
     }
 
     // Marks the book as rented
     public void borrowed() {
-        borrowed = true; 
+        borrowed = true;
     }
 
     // Marks the book as not rented
     public void returned() {
-        borrowed = false; 
+        borrowed = false;
     }
 
     // Returns true if the book is rented, false otherwise
     public boolean isBorrowed() {
         if (borrowed) {
-            return true; 
+            return true;
         }
 
-        return false; 
+        return false;
     }
 
     // Returns the title of the book
     public String getTitle() {
         // Implement this method
-        return title; 
+        return title;
     }
 
     public static void main(String[] arguments) {
