@@ -17,6 +17,7 @@ public class DrawGraphics {
     public DrawGraphics() {
 
         triangle = new BouncingTriangle(200, 200, Color.BLUE);
+        triangle.setMovementVector(0, 2);
 
         box1 = new BouncingBox(200, 50, Color.RED);
         box1.setMovementVector(1, 0);
