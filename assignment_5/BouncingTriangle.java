@@ -7,12 +7,14 @@ import java.awt.Graphics2D;
 import java.util.Arrays;
 
 /**
- * BouncingTriangle is the class of a equilateral triangle.
+ * BouncingTriangle is the class of a isoceles triangle.
  */
 
 public class BouncingTriangle {
 
     // array of the x and y coordinates of the three vertices
+    // index 0 is the middle vertex, index 1 is the left vertex, index 2 is the
+    // right vertex
     int[] xPoints = new int[3];
     int[] yPoints = new int[3];
 
@@ -72,15 +74,15 @@ public class BouncingTriangle {
         // "stuck"
         // rather than moving in the right direction
 
-        // int leftVx = xPoints[0] - SIZE;
-        // int leftVy = yPoints[0] -
-
-        if ((xPoints[0] - SIZE <= 0 && xDirection < 0) ||
-                (xPoints[0] + SIZE >= SimpleDraw.WIDTH && xDirection > 0)) {
+        // if the left vertex or the right vertex hits the bound, change direction.
+        if ((xPoints[1] <= 0 && xDirection < 0) ||
+                (xPoints[2] >= SimpleDraw.WIDTH && xDirection > 0)) {
             xDirection = -xDirection;
         }
-        if ((yPoints[0] - SIZE <= 0 && yDirection < 0) ||
-                (yPoints[0] + SIZE >= SimpleDraw.HEIGHT && yDirection > 0)) {
+
+        // if the bottom edge or the middle vertex hits the bound, change direction.
+        if ((yPoints[0] <= 0 && yDirection < 0) ||
+                (yPoints[1] >= SimpleDraw.HEIGHT && yDirection > 0)) {
             yDirection = -yDirection;
         }
     }
