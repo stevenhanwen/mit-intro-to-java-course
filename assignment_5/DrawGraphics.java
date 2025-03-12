@@ -7,28 +7,39 @@ import java.util.ArrayList;
 public class DrawGraphics {
     BouncingBox box1;
     BouncingBox box2;
-    // BouncingBox box3;
+    BouncingBox box3;
 
-    // ArrayList<BouncingBox> boxes = new ArrayList<>();
+    BouncingTriangle triangle;
+
+    ArrayList<BouncingBox> boxes = new ArrayList<>();
 
     /** Initializes this class for drawing. */
     public DrawGraphics() {
+
+        triangle = new BouncingTriangle(200, 200, Color.BLUE);
+
         box1 = new BouncingBox(200, 50, Color.RED);
         box1.setMovementVector(1, 0);
+        boxes.add(box1);
 
         box2 = new BouncingBox(200, 50, Color.BLUE);
         box2.setMovementVector(0, -2);
+        boxes.add(box2);
 
-        // box1 = new BouncingBox(200, 50, Color.MAGENTA);
-        // box1.setMovementVector(1, 3);
+        box3 = new BouncingBox(200, 50, Color.MAGENTA);
+        box3.setMovementVector(1, 3);
+        boxes.add(box3);
     }
 
     /** Draw the contents of the window on surface. Called 20 times per second. */
     public void draw(Graphics surface) {
         surface.drawLine(50, 50, 250, 250);
-        box1.draw(surface);
 
-        box2.draw(surface);
+        triangle.draw(surface);
+
+        for (int i = 0; i < boxes.size(); i++) {
+            boxes.get(i).draw(surface);
+        }
 
         // Draw a rectangle
         surface.setColor(Color.BLUE);
