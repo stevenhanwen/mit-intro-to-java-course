@@ -17,7 +17,7 @@ public class DrawGraphics {
         movingSprite1.setMovementVector(3, 1);
         bouncers.add(movingSprite1);
 
-        Oval oval1 = new Oval();
+        Oval oval1 = new Oval(20, 20, Color.BLUE);
         movingSprite2 = new Bouncer(50, 50, oval1);
         movingSprite2.setMovementVector(4, 4);
         bouncers.add(movingSprite2);
