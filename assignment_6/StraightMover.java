@@ -1,5 +1,6 @@
-import java.awt.Graphics;
+package assignment_6;
 
+import java.awt.Graphics;
 
 public class StraightMover {
     private int x;
@@ -12,7 +13,7 @@ public class StraightMover {
     public StraightMover(int startX, int startY, Sprite sprite) {
         x = startX;
         y = startY;
-        this.sprite = sprite; 
+        this.sprite = sprite;
     }
 
     /** Starts moving the object in the direction (xIncrement, yIncrement). */

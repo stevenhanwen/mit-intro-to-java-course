@@ -1,3 +1,5 @@
+package assignment_6;
+
 import java.awt.Graphics;
 
 public class Bouncer {

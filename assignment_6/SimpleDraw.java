@@ -1,3 +1,5 @@
+package assignment_6;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -10,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /** Displays a window and delegates drawing to DrawGraphics. */
-public class SimpleDraw extends JPanel implements Runnable {    
+public class SimpleDraw extends JPanel implements Runnable {
     private static final long serialVersionUID = -7469734580960165754L;
     private boolean animate = true;
     private final int FRAME_DELAY = 50; // 50 ms = 20 FPS
@@ -18,16 +20,13 @@ public class SimpleDraw extends JPanel implements Runnable {
     public static final int HEIGHT = 300;
     private DrawGraphics draw;
 
-    
-    public SimpleDraw(DrawGraphics drawer) {
-        this.draw = drawer;
-    }
+    this.draw=drawer;
 
     /** Paint callback from Swing. Draw graphics using g. */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Enable anti-aliasing for better looking graphics 
+        // Enable anti-aliasing for better looking graphics
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         draw.draw(g2);
@@ -65,21 +64,37 @@ public class SimpleDraw extends JPanel implements Runnable {
         final SimpleDraw content = new SimpleDraw(new DrawGraphics());
 
         JFrame frame = new JFrame("Graphics!");
-       
-        Color bgColor = Color.white;
+
+
         frame.setBackground(bgColor);
         content.setBackground(bgColor);
-//        content.setSize(WIDTH, HEIGHT);
-//        content.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        content.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-//        frame.setSize(WIDTH, HEIGHT);
-        frame.setContentPane(content);
+        // content.setSize(WIDTH, HEIGH
+            content.setMinimumSize(new Dim
+           ntent.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        // frame.setSize(WIDTH, HEIGHT);
+           ame.setContentPane(content);
         frame.setResizable(false);
         frame.pack();
         frame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) { System.exit(0); }
-            public void windowDeiconified(WindowEvent e) { content.start(); }
-            public void windowIconified(WindowEvent e) { content.stop(); }
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+                
+            
+
+            }
+                
+            
+
+            
+                
+            
+            public void windowDeiconified(WindowEvent e) {
+                content.start();
+            }
+
+            public void windowIconified(WindowEvent e) {
+                content.stop();
+            }
         });
 
         new Thread(content).start();

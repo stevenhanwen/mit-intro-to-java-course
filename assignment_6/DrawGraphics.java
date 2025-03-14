@@ -1,3 +1,5 @@
+package assignment_6;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
