@@ -66,8 +66,8 @@ public class SimpleDraw extends JPanel implements Runnable {
         final SimpleDraw content = new SimpleDraw(new DrawGraphics());
 
         JFrame frame = new JFrame("Graphics!");
-
-        frame.setBackground(bgColor);
+        Color bgColor = Color.white;
+        frame.getContentPane().setBackground(bgColor);
         content.setBackground(bgColor);
         // content.setSize(WIDTH, HEIGH
         // content.setMinimumSize(new Dimension(WIDTH, HEIGHT);
