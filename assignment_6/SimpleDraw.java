@@ -20,7 +20,9 @@ public class SimpleDraw extends JPanel implements Runnable {
     public static final int HEIGHT = 300;
     private DrawGraphics draw;
 
-    this.draw=drawer;
+    public SimpleDraw(DrawGraphics drawer) {
+        this.draw = drawer;
+    }
 
     /** Paint callback from Swing. Draw graphics using g. */
     public void paintComponent(Graphics g) {
@@ -65,29 +67,20 @@ public class SimpleDraw extends JPanel implements Runnable {
 
         JFrame frame = new JFrame("Graphics!");
 
-
         frame.setBackground(bgColor);
         content.setBackground(bgColor);
         // content.setSize(WIDTH, HEIGH
-            content.setMinimumSize(new Dim
-           ntent.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        // content.setMinimumSize(new Dimension(WIDTH, HEIGHT);
+        content.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         // frame.setSize(WIDTH, HEIGHT);
-           ame.setContentPane(content);
+        frame.setContentPane(content);
         frame.setResizable(false);
         frame.pack();
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
-                
-            
-
             }
-                
-            
 
-            
-                
-            
             public void windowDeiconified(WindowEvent e) {
                 content.start();
             }
