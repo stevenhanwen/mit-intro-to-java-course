@@ -25,8 +25,12 @@ public class Oval implements Sprite {
 
     public void draw(Graphics surface, int x, int y) {
         // Draw the object
+
+        // sets the color to color
         surface.setColor(color);
         surface.fillOval(x, y, width, height);
+
+        // sets color to black for remaining methods to draw the outline
         surface.setColor(Color.BLACK);
         ((Graphics2D) surface).setStroke(new BasicStroke(3.0f));
         surface.drawOval(x, y, width, height);
