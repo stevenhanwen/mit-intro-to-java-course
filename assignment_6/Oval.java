@@ -13,8 +13,8 @@ public class Oval implements Sprite {
     /**
      * Constructor for oval sprite
      * 
-     * @param horizontalRadius
-     * @param veritalRadius
+     * @param width
+     * @param height
      * @param color
      */
     public Oval(int width, int height, Color color) {
