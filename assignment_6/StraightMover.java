@@ -2,7 +2,7 @@ package assignment_6;
 
 import java.awt.Graphics;
 
-public class StraightMover {
+public class StraightMover implements Mover {
     private int x;
     private int y;
     private int xDirection;
@@ -22,6 +22,7 @@ public class StraightMover {
         yDirection = yIncrement;
     }
 
+    @Override
     public void draw(Graphics graphics) {
         sprite.draw(graphics, x, y);
 
