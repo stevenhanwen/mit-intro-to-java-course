@@ -28,15 +28,11 @@ public class RowChecker {
                 }
             }
 
+            // skip the empty line without integers
+            line = br.readLine();
+
             // checks if the sum of the remaining lines are equal to the first
             while ((line = br.readLine()) != null) {
-                // this will skip the empty line in the file
-                line = br.readLine();
-
-                // ending while-loop if reaches the line after the last line of integers
-                if (line == null) {
-                    break;
-                }
 
                 nums = line.split("\t");
                 for (int i = 0; i < nums.length; i++) {
@@ -53,6 +49,9 @@ public class RowChecker {
 
                 // make current row sum equal to 0 again.
                 currentRowSum = 0;
+
+                // this will skip the empty lines in the file
+                line = br.readLine();
             }
 
             // rows all sum to constant, so file is a magic square
