@@ -6,26 +6,49 @@ import java.io.IOException;
 
 public class RowChecker {
 
-    public void readFile() {
+    public void checkRows(String fileName) {
+
+        boolean rowSumsToConstant = true;
+        String line;
+        String nums[];
+        int currentRowSum = 0;
+        int nextRowSum = 0;
+
         try {
-            FileReader fr = new FileReader("./assignment_7/Mercury.txt");
+
+            FileReader fr = new FileReader(fileName);
             BufferedReader br = new BufferedReader(fr);
 
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
+            if ((line = br.readLine()) != null) {
+                System.out.println("line is: " + line);
+                nums = line.split("\t");
+
+                for (int i = 0; i < nums.length; i++) {
+                    System.out.println(nums[i]);
+                }
+
+                // for (int i = 0; i < nums.length; i++) {
+                // currentRowSum += Integer.valueOf(nums[i]);
+                // }
             }
 
             br.close();
 
         } catch (IOException e) {
             e.printStackTrace();
+
         }
+
+        // br.readLine();
+
+        // while (nextRowSum != currentRowSum) {
+
+        // }
 
     }
 
     public static void main(String[] args) {
         RowChecker checker = new RowChecker();
-        checker.readFile();
+        checker.checkRows("./assignment_7/Mercury.txt");
     }
 }
