@@ -3,6 +3,7 @@ package assignment_7;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class RowChecker {
 
@@ -52,6 +53,7 @@ public class RowChecker {
 
                 // this will skip the empty lines in the file
                 line = br.readLine();
+                System.out.println(Arrays.toString(nums));
             }
 
             // rows all sum to constant, so file is a magic square
