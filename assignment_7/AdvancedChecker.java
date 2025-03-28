@@ -3,6 +3,7 @@ package assignment_7;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class AdvancedChecker {
 
@@ -18,12 +19,18 @@ public class AdvancedChecker {
         FileReader fr = new FileReader(fileName);
         BufferedReader br = new BufferedReader(fr);
 
-        // Finding the sum of the first line of integers
-        if ((line = br.readLine()) != null) { // after reading the line, it will go to the next line
-            nums = line.split("\t");
-            for (int i = 0; i < nums.length; i++) {
-                firstRowSum += Integer.valueOf(nums[i]);
-            }
+        // if file is empty, then return the method.
+        if ((line = br.readLine()) == null) {
+            System.out.println("The file is empty");
+            br.close();
+            return;
+        }
+
+        // Finding the sum of the first line of integers because if the code
+        // reaches here, we know it is not null.
+        nums = line.split("\t");
+        for (int i = 0; i < nums.length; i++) {
+            firstRowSum += Integer.valueOf(nums[i]);
         }
 
         // skip the empty line without integers
@@ -64,8 +71,10 @@ public class AdvancedChecker {
 
     public static void main(String[] args) throws IOException {
         AdvancedChecker checker = new AdvancedChecker();
-        // checker.checkRows("./assignment_7/Mercury.txt");
-        // checker.checkRows("./assignment_7/Luna.txt");
-        checker.checkRows("./assignment_7/Unhappy1.txt");
+        checker.checkRows("./assignment_7/Mercury.txt");
+        checker.checkRows("./assignment_7/Luna.txt");
+        // checker.checkRows("./assignment_7/Unhappy1.txt");
+        // checker.checkRows("./assignment_7/Unhappy2.txt");
+        // checker.checkRows("./assignment_7/Unhappy3.txt");
     }
 }
