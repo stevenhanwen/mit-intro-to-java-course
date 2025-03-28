@@ -53,7 +53,7 @@ public class AdvancedChecker {
         }
 
         // rows all sum to constant, so file is a magic square
-        if (rowSumsToConstant = true) {
+        if (rowSumsToConstant == true) {
             System.out.println("This is a magic square!");
         } else {
             System.out.println("This is not a magic square. :(");
@@ -64,7 +64,8 @@ public class AdvancedChecker {
 
     public static void main(String[] args) throws IOException {
         AdvancedChecker checker = new AdvancedChecker();
-        checker.checkRows("./assignment_7/Mercury.txt");
-        checker.checkRows("./assignment_7/Luna.txt");
+        // checker.checkRows("./assignment_7/Mercury.txt");
+        // checker.checkRows("./assignment_7/Luna.txt");
+        checker.checkRows("./assignment_7/Unhappy1.txt");
     }
 }
