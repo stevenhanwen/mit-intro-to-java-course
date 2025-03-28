@@ -73,7 +73,9 @@ public class RowChecker {
 
     public static void main(String[] args) {
         RowChecker checker = new RowChecker();
-        checker.checkRows("./assignment_7/Mercury.txt");
-        checker.checkRows("./assignment_7/Luna.txt");
+        // checker.checkRows("./assignment_7/Mercury.txt");
+        // checker.checkRows("./assignment_7/Luna.txt");
+        // checker.checkRows("./assignment_7/Unhappy1.txt");
+        checker.checkRows("./assignment_7/Unhappy2.txt");
     }
 }
