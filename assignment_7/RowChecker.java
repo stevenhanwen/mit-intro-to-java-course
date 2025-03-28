@@ -57,7 +57,7 @@ public class RowChecker {
             }
 
             // rows all sum to constant, so file is a magic square
-            if (rowSumsToConstant = true) {
+            if (rowSumsToConstant == true) {
                 System.out.println("This is a magic square!");
             } else {
                 System.out.println("This is not a magic square. :(");
