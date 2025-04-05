@@ -28,10 +28,17 @@ public class AdvancedChecker {
             return;
         }
 
+        br.close();
+
+        // creating file reader and bufferreader
+        fr = new FileReader(fileName);
+        br = new BufferedReader(fr);
+
         while ((line = br.readLine()) != null) {
             numRows++;
             numCols = numRows;
             System.out.println("number of rows: " + numRows);
+            System.out.println(line);
             br.readLine();
         }
 
@@ -57,9 +64,6 @@ public class AdvancedChecker {
         // skip the empty line without integers
         line = br.readLine();
 
-        // After checking first line of file and skipping empty line,
-        // now at index 2 of file
-        int fileLineIndex = 2;
         // curent row index at 1
         int rowIndex = 1;
 
