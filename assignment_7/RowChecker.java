@@ -69,13 +69,14 @@ public class RowChecker {
             e.printStackTrace();
 
         }
+
     }
 
     public static void main(String[] args) {
         RowChecker checker = new RowChecker();
-        // checker.checkRows("./assignment_7/Mercury.txt");
-        // checker.checkRows("./assignment_7/Luna.txt");
-        // checker.checkRows("./assignment_7/Unhappy1.txt");
-        checker.checkRows("./assignment_7/Unhappy2.txt");
+        // checker.checkRows("./assignment_7/testfiles/Mercury.txt");
+        // checker.checkRows("./assignment_7/testfiles/Luna.txt");
+        checker.checkRows("./assignment_7/testfiles/Unhappy1.txt");
+        // checker.checkRows("./assignment_7/testfiles/Unhappy2.txt");
     }
 }
