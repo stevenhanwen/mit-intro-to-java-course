@@ -16,6 +16,8 @@ public class AdvancedChecker {
         int numCols = 0;
         int firstRowSum = 0;
         int currentRowSum = 0;
+        int firstColumnSum = 0;
+        int currentColumnSum = 0;
 
         // creating file reader and bufferreader
         FileReader fr = new FileReader(fileName);
@@ -67,21 +69,16 @@ public class AdvancedChecker {
         // curent row index at 1
         int rowIndex = 1;
 
-        for (int i = 0; i < numRows; i++) {
-            System.out.println(Arrays.toString(nums[i]));
-        }
-
         // checking if the sum of the remaining lines are equal to the first
         while ((line = br.readLine()) != null) {
             System.out.println("the row index is: " + rowIndex);
             nums[rowIndex] = line.split("\t");
-            for (int i = 0; i < nums.length; i++) {
+            for (int i = 0; i < nums[rowIndex].length; i++) {
                 currentRowSum += Integer.valueOf(nums[rowIndex][i]);
             }
 
             if (currentRowSum != firstRowSum) {
                 rowSumsToConstant = false;
-                break;
             }
 
             // make current row sum equal to 0 again.
@@ -93,8 +90,35 @@ public class AdvancedChecker {
 
         br.close();
 
+        // print out the 2d array
+        for (int i = 0; i < numRows; i++) {
+            System.out.println(Arrays.toString(nums[i]));
+        }
+
+        // find sum of first column
+        for (int i = 0; i < numRows; i++) {
+            System.out.println("current row index is:" + i);
+            firstColumnSum += Integer.valueOf(nums[i][0]);
+        }
+
+        // checking if the sum of the remaining columns are equal to the first
+        // outer loop goes through each column after the first one,
+        // inner loop calculates the sum of the column
+        for (int i = 1; i < numCols; i++) {
+            for (int j = 0; j < numRows; j++) {
+                currentColumnSum += Integer.valueOf(nums[j][i]);
+            }
+
+            if (currentColumnSum != firstColumnSum) {
+                columnSumsToConstant = false;
+            }
+
+            // make current row sum equal to 0 again.
+            currentColumnSum = 0;
+        }
+
         // rows all sum to constant, so file is a magic square
-        if (rowSumsToConstant == true) {
+        if (rowSumsToConstant && columnSumsToConstant) {
             System.out.println("This is a magic square!");
         } else {
             System.out.println("This is not a magic square. :(");
