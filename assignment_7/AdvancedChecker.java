@@ -113,11 +113,11 @@ public class AdvancedChecker {
                 columnSumsToConstant = false;
             }
 
-            // make current row sum equal to 0 again.
+            // make current column sum equal to 0 again.
             currentColumnSum = 0;
         }
 
-        // rows all sum to constant, so file is a magic square
+        // both rows and columns all sum to constant, so file is a magic square
         if (rowSumsToConstant && columnSumsToConstant) {
             System.out.println("This is a magic square!");
         } else {
