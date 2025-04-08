@@ -11,6 +11,7 @@ public class AdvancedChecker {
 
         boolean rowSumsToConstant = true;
         boolean columnSumsToConstant = true;
+        boolean diagonalSumsToConstant = true;
         String line;
         int numRows = 0;
         int numCols = 0;
@@ -117,8 +118,30 @@ public class AdvancedChecker {
             currentColumnSum = 0;
         }
 
+        // find sum of the diagonal from top left to bottom right
+        int firstDiagonalSum = 0;
+        int j = 0;
+        for (int i = 0; i < numCols; i++) {
+            firstDiagonalSum += Integer.valueOf(nums[i][j]);
+            j++;
+            System.out.println("The current diagonal sum is: " + firstDiagonalSum);
+        }
+
+        // find sum of the diagonal from top right to bottom left
+        int secondDiagonalSum = 0;
+        j = 0;
+        for (int i = numCols - 1; i > -1; i--) {
+            secondDiagonalSum += Integer.valueOf(nums[i][j]);
+            j++;
+            System.out.println("The current diagonal sum  of the second diagonal is: " + secondDiagonalSum);
+        }
+
+        if (firstDiagonalSum != secondDiagonalSum) {
+            diagonalSumsToConstant = false;
+        }
+
         // both rows and columns all sum to constant, so file is a magic square
-        if (rowSumsToConstant && columnSumsToConstant) {
+        if (rowSumsToConstant && columnSumsToConstant && diagonalSumsToConstant) {
             System.out.println("This is a magic square!");
         } else {
             System.out.println("This is not a magic square. :(");
@@ -128,8 +151,8 @@ public class AdvancedChecker {
     public static void main(String[] args) throws IOException {
         AdvancedChecker checker = new AdvancedChecker();
         // checker.checkRows("./assignment_7/testfiles/Mercury.txt");
-        // checker.checkRows("./assignment_7/testfiles/Luna.txt");
-        checker.checkRows("./assignment_7/testfiles/Unhappy1.txt");
+        checker.checkRows("./assignment_7/testfiles/Luna.txt");
+        // checker.checkRows("./assignment_7/testfiles/Unhappy1.txt");
         // checker.checkRows("./assignment_7/testfiles/Unhappy2.txt");
         // checker.checkRows("./assignment_7/testfiles/Unhappy3.txt");
     }
